@@ -8,8 +8,6 @@ import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.view.Gravity
 
 /**
  * @author Geek_Soledad (msdx.android@qq.com)
@@ -22,8 +20,6 @@ class BadgeDrawable(private val origin: Drawable, private val badge: Drawable) :
             invalidateSelf()
         }
 
-    var gravity = Gravity.CENTER
-
     init {
         badge.setBounds(0, 0, badge.intrinsicWidth, badge.intrinsicHeight)
     }
@@ -31,24 +27,10 @@ class BadgeDrawable(private val origin: Drawable, private val badge: Drawable) :
     override fun draw(canvas: Canvas) {
         origin.draw(canvas)
         if (showBadge) {
-            val layoutDirection = DrawableCompat.getLayoutDirection(this)
-            val absGravity = Gravity.getAbsoluteGravity(gravity, layoutDirection)
             val radiusX = badge.intrinsicWidth / 2.0f
             val radiusY = badge.intrinsicHeight / 2.0f
             var x = bounds.right - radiusX
             var y = bounds.top - radiusY
-            if (Gravity.LEFT.and(absGravity) == Gravity.LEFT) {
-                x -= radiusX
-            }
-            if (Gravity.RIGHT.and(absGravity) == Gravity.RIGHT) {
-                x += radiusX
-            }
-            if (Gravity.TOP.and(absGravity) == Gravity.TOP) {
-                y -= radiusY
-            }
-            if (Gravity.BOTTOM.and(absGravity) == Gravity.BOTTOM) {
-                y += radiusY
-            }
             canvas.save()
             canvas.translate(x, y)
             badge.draw(canvas)
