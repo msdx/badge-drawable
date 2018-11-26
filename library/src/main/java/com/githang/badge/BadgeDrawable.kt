@@ -15,7 +15,7 @@ import android.view.Gravity
  * @author Geek_Soledad (msdx.android@qq.com)
  * @since 0.1
  */
-class BadgeDrawable(private val mOrigin: Drawable, val badge: Drawable) : Drawable() {
+class BadgeDrawable(private val origin: Drawable, private val badge: Drawable) : Drawable() {
     var showBadge: Boolean = false
         set(show) {
             field = show
@@ -29,7 +29,7 @@ class BadgeDrawable(private val mOrigin: Drawable, val badge: Drawable) : Drawab
     }
 
     override fun draw(canvas: Canvas) {
-        mOrigin.draw(canvas)
+        origin.draw(canvas)
         if (showBadge) {
             val layoutDirection = DrawableCompat.getLayoutDirection(this)
             val absGravity = Gravity.getAbsoluteGravity(gravity, layoutDirection)
@@ -57,70 +57,70 @@ class BadgeDrawable(private val mOrigin: Drawable, val badge: Drawable) : Drawab
     }
 
     override fun getState(): IntArray {
-        return mOrigin.state
+        return origin.state
     }
 
     override fun setState(stateSet: IntArray?): Boolean {
-        return mOrigin.setState(stateSet)
+        return origin.setState(stateSet)
     }
 
     override fun getConstantState(): ConstantState {
-        return mOrigin.constantState
+        return origin.constantState
     }
 
     override fun isStateful(): Boolean {
-        return mOrigin.isStateful
+        return origin.isStateful
     }
 
     override fun jumpToCurrentState() {
-        mOrigin.jumpToCurrentState()
+        origin.jumpToCurrentState()
     }
 
     override fun setAlpha(alpha: Int) {
-        mOrigin.alpha = alpha
+        origin.alpha = alpha
     }
 
     override fun getOpacity(): Int {
-        return mOrigin.opacity
+        return origin.opacity
     }
 
     override fun setColorFilter(colorFilter: ColorFilter?) {
-        mOrigin.colorFilter = colorFilter
+        origin.colorFilter = colorFilter
     }
 
     override fun getIntrinsicHeight(): Int {
-        return mOrigin.intrinsicHeight
+        return origin.intrinsicHeight
     }
 
     override fun getIntrinsicWidth(): Int {
-        return mOrigin.intrinsicWidth
+        return origin.intrinsicWidth
     }
 
     override fun setBounds(bounds: Rect?) {
         super.setBounds(bounds)
-        mOrigin.bounds = bounds
+        origin.bounds = bounds
     }
 
     override fun setBounds(left: Int, top: Int, right: Int, bottom: Int) {
         super.setBounds(left, top, right, bottom)
-        mOrigin.setBounds(left, top, right, bottom)
+        origin.setBounds(left, top, right, bottom)
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun setTint(tintColor: Int) {
         super.setTint(tintColor)
-        mOrigin.setTint(tintColor)
+        origin.setTint(tintColor)
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun setTintList(tint: ColorStateList?) {
         super.setTintList(tint)
-        mOrigin.setTintList(tint)
+        origin.setTintList(tint)
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun setTintMode(tintMode: PorterDuff.Mode?) {
         super.setTintMode(tintMode)
-        mOrigin.setTintMode(tintMode)
+        origin.setTintMode(tintMode)
     }
 }
